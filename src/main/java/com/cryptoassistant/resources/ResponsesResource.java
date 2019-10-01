@@ -6,7 +6,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.cryptoassistant.models.ResponsesRequestModel;
+import com.cryptoassistant.models.slack.Question;
+import com.cryptoassistant.services.ResponsesService;
 import com.google.gson.Gson;
 
 @Path("api/v1/responses")
@@ -16,9 +17,12 @@ public class ResponsesResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getResponse(String body) {
 		
+		ResponsesService rspService = new ResponsesService();
 		Gson gson = new Gson();
-		ResponsesRequestModel input = gson.fromJson(body, ResponsesRequestModel.class);
+		Question question = gson.fromJson(body, Question.class);
 		
-		return "Hello, Diogo!";
+		rspService.proccessRequest(question);
+		
+		return gson.toJson(question);
 	}
 }

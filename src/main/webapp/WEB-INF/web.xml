@@ -16,4 +16,9 @@
         <servlet-name>Jersey Web Application</servlet-name>
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
+    <listener>  
+	    <listener-class>
+	        com.cryptoassistant.listeners.CryptoServletContextListener
+	    </listener-class>
+	</listener> 
 </web-app>
